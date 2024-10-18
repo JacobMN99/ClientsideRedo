@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elev- og Kursushåndtering</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Elev- og Kursushåndtering</h1>
+    </header>
+    <main>
+        <section id="student-list">
+            <h2>Elev liste</h2>
+            <button onclick="loadStudents()">Indlæs Elever</button>
+            <ul id="students"></ul>
+        </section>
+
+        <section id="student-details">
+            <h2>Opret / Opdater Elev</h2>
+            <form id="student-form">
+                <label for="studentId">Elev ID (ved opdatering):</label>
+                <input type="text" id="studentId" name="studentId">
+
+                <label for="studentName">Fornavn:</label>
+                <input type="text" id="studentName" name="studentName" required>
+
+                <label for="studentLastName">Efternavn:</label>
+                <input type="text" id="studentLastName" name="studentLastName" required>
+
+                <label for="teamID">Hold ID:</label>
+                <input type="text" id="teamID" name="teamIDsdad" required>
+
+                </select>
+
+                <button type="submit" onclick="handleSaveStudent()">Gem Elev</button>
+                <button type="button" onclick="deleteStudent()">Slet Elev</button>
+            </form>
+        </section>
+
+        <section id="course-details">
+            <h2>Kursushåndtering</h2>
+            <label for="studentIdForCourses">Elev ID:</label>
+            <input type="text" id="studentIdForCourses" name="studentIdForCourses">
+
+            <button onclick="loadCourses()">Indlæs Kurser</button>
+            <button onclick="loadStudentCourses()">Indlæs Elev Kurser</button>
+
+            <ul id="course-list"></ul>
+
+            <form id="course-form">
+                <label for="courseId">Kursus ID (tilføj/slet):</label>
+                <input type="text" id="courseId" name="courseId">
+                <button type="button" onclick="addCourse()">Tilføj Kursus</button>
+                <button type="button" onclick="deleteCourse()">Slet Kursus</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
