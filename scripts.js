@@ -56,6 +56,21 @@ async function createStudent(student) {
     }
 }
 
+async function createTeam() {
+    const teamName = document.getElementById('teamName').value;
+    const response = await fetch(`${API_URL}/Team/CreateTeam`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ teamName: teamName })
+    });
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to create team: ${errorText}`);
+    } else {
+        alert('Hold oprettet!');
+    }
+}
+
 async function updateStudent(id, updatedFields) {
     const response = await fetch(`${API_URL}/Student/UpdateStudent/${id}`, {
         method: 'PUT',
@@ -98,7 +113,7 @@ async function loadTeams() {
     }
     catch(error)
     {
-
+        console.error('Failed to load teams', error);
     }
 }
 

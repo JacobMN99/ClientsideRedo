@@ -56,9 +56,13 @@
         </section>
 
         <section id="team-details">
-            <h2>Teams</h2>
-            <button onclick="loadTeams()">Indlæs Teams</button>
+            <h2>Hold</h2>
+            <button onclick="loadTeams()">Indlæs Hold</button>
             <ul id="teams-list"></ul>
+            
+            <label for="teamName">Holdnavn:</label>
+            <input type="text" id="teamName" name="teamName" required>
+            <button onclick="createTeam()">Opret Hold</button>
             </form>
         </section>
     </main>
