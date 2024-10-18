@@ -198,7 +198,7 @@ async function handleSaveStudent() {
     const student = {
         studentName: document.getElementById('studentName').value,
         studentLastName: document.getElementById('studentLastName').value,
-        team: { teamID: document.getElementById('teamID').value } 
+        teamID: document.getElementById('teamID').value
     };
 
     try {
