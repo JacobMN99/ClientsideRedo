@@ -8,7 +8,7 @@ async function loadStudents() {
 
         students.forEach(student => {
             const li = document.createElement('li');
-            li.textContent = `${student.studentName} ${student.studentLastName} ID: ${student.studentID}`;
+            li.textContent = `${student.studentName} ${student.studentLastName} ID: ${student.studentID} Team: ${student.team.teamName}`;
             studentList.appendChild(li);
         });
     } catch (error) {
