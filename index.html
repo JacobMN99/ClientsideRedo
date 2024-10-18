@@ -20,7 +20,7 @@
         <section id="student-details">
             <h2>Opret / Opdater Elev</h2>
             <form id="student-form">
-                <label for="studentId">Elev ID (ved opdatering):</label>
+                <label for="studentId">Elev ID:</label>
                 <input type="text" id="studentId" name="studentId">
 
                 <label for="studentName">Fornavn:</label>
@@ -30,9 +30,7 @@
                 <input type="text" id="studentLastName" name="studentLastName" required>
 
                 <label for="teamID">Hold ID:</label>
-                <input type="text" id="teamID" name="teamIDsdad" required>
-
-                </select>
+                <input type="text" id="teamID" name="teamID" required>
 
                 <button type="submit" onclick="handleSaveStudent()">Gem Elev</button>
                 <button type="button" onclick="deleteStudent()">Slet Elev</button>
@@ -54,6 +52,13 @@
                 <input type="text" id="courseId" name="courseId">
                 <button type="button" onclick="addCourse()">Tilføj Kursus</button>
                 <button type="button" onclick="deleteCourse()">Slet Kursus</button>
+            </form>
+        </section>
+
+        <section id="team-details">
+            <h2>Teams</h2>
+            <button onclick="loadTeams()">Indlæs Teams</button>
+            <ul id="teams-list"></ul>
             </form>
         </section>
     </main>

@@ -87,6 +87,14 @@ async function loadCourses() {
 async function loadTeams() {
     try {
         const teams = await getTeams();
+        const teamList = document.getElementById('teams-list');
+        teamList.innerHTML = '';
+
+        teams.forEach(team => {
+            const li = document.createElement('li');
+            li.textContent = `${team.teamName} ID: ${team.teamID}`;
+            teamList.appendChild(li);
+        })
     }
     catch(error)
     {
@@ -218,4 +226,5 @@ window.onload = function() {
     loadTeams(); 
     loadStudents(); 
     loadCourses();
+    loadTeams
 };
