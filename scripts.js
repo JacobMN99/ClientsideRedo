@@ -20,6 +20,29 @@ async function getStudents() {
     const response = await fetch(`${API_URL}/Student/GetStudents`);
     return await response.json();
 }
+async function handleSaveStudent() {
+    const studentId = document.getElementById('studentId').value;
+    const student = {
+        studentName: document.getElementById('studentName').value,
+        studentLastName: document.getElementById('studentLastName').value,
+        teamID: document.getElementById('teamID').value
+    };
+
+    try {
+        if (studentId) {
+
+            await updateStudent(studentId, student);
+           alert('Student opdateret!');
+        } else {
+
+            await createStudent(student);
+            alert('Student oprettet!');
+        }
+        loadStudents(); 
+    } catch (error) {
+        console.error('Failed to save student:', error);
+    }
+}
 
 document.getElementById('student-form').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -28,21 +51,8 @@ document.getElementById('student-form').addEventListener('submit', async (e) => 
     const student = {
         studentName: document.getElementById('studentName').value,
         studentLastName: document.getElementById('studentLastName').value,
-        team: { teamID: document.getElementById('teamID').value }
+        teamID: document.getElementById('teamID').value
     };
-
-    try {
-        if (studentId) {
-            await updateStudent(studentId, student);
-            alert('Student opdateret!');
-        } else {
-            await createStudent(student);
-            alert('Student oprettet!');
-        }
-        loadStudents(); 
-    } catch (error) {
-        console.error('Failed to save student:', error);
-    }
 });
 
 async function createStudent(student) {
@@ -71,11 +81,16 @@ async function createTeam() {
     }
 }
 
-async function updateStudent(id, updatedFields) {
-    const response = await fetch(`${API_URL}/Student/UpdateStudent/${id}`, {
+async function updateStudent(studentID, updatedFields) {
+    const response = await fetch(`${API_URL}/Student/UpdateStudent/${studentID}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedFields)
+        body: JSON.stringify({
+            studentName: updatedFields.studentName,
+            studentLastName: updatedFields.studentLastName,
+            teamID: updatedFields.teamID,
+            studentID: studentID
+        })
     });
     if (!response.ok) {
         throw new Error('Failed to update student');
@@ -153,7 +168,7 @@ async function deleteCourse() {
     if (!studentId || !courseId) {
         alert('Angiv venligst både student ID og kursus ID.');
         return;
-    }
+    }sav
     try {
         await deleteStudentCourses(studentId, [courseId]);
         alert('Kursus slettet fra student!');
@@ -208,29 +223,6 @@ async function deleteStudent() {
     }
 }
 
-async function handleSaveStudent() {
-    const studentId = document.getElementById('studentId').value;
-    const student = {
-        studentName: document.getElementById('studentName').value,
-        studentLastName: document.getElementById('studentLastName').value,
-        teamID: document.getElementById('teamID').value
-    };
-
-    try {
-        if (studentId) {
-
-            await updateStudent(studentId, student);
-           alert('Student opdateret!');
-        } else {
-
-            await createStudent(student);
-            alert('Student oprettet!');
-        }
-        loadStudents(); 
-    } catch (error) {
-        console.error('Failed to save student:', error);
-    }
-}
 
 async function getTeams() {
     const response = await fetch(`${API_URL}/Team/GetTeams`);
